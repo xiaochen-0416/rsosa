@@ -254,7 +254,7 @@ class _DesktopHomePageState extends State<DesktopHomePage>
                     style: const TextStyle(fontSize: 15),
                   ).workaroundFreezeLinuxMint(),
 
-                  const SizedBox(height: 12),
+                  const SizedBox(height: 6),
 
                   InkWell(
                     onTap: () {
