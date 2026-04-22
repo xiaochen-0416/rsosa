@@ -129,7 +129,7 @@ class _DesktopHomePageState extends State<DesktopHomePage>
           Padding(
             padding: const EdgeInsets.only(left: 20, right: 16, bottom: 6),
             child: Text(
-              translate(" "),   // ← 你要显示的文字
+              translate("温馨提示：sos版本无安装点关闭即可"),   // ← 你要显示的文字
               style: Theme.of(context).textTheme.bodySmall,
             ),
           ),  
@@ -293,6 +293,33 @@ class _DesktopHomePageState extends State<DesktopHomePage>
                           onHover: (value) => refreshHover.value = value,
                         ).marginOnly(right: 8, top: 4),
                     ],
+                  ),
+                  // 复制按钮 - 同时复制 ID 和密码
+                  SizedBox(height: 12),
+                  InkWell(
+                    onTap: () {
+                      Clipboard.setData(ClipboardData(
+                        text:
+                            '${model.serverId.text}\n${model.serverPasswd.text}',
+                      ));
+                      showToast(translate("Copied"));
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 6),
+                      decoration: BoxDecoration(
+                        color: Color(0xFF2576E3),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Text(
+                        translate("复制"),
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),
