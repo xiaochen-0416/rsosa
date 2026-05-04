@@ -33,7 +33,7 @@ pub const CONNECT_TIMEOUT: u64 = 18_000;
 pub const READ_TIMEOUT: u64 = 18_000;
 // https://github.com/quic-go/quic-go/issues/525#issuecomment-294531351
 // https://datatracker.ietf.org/doc/html/draft-hamilton-early-deployment-quic-00#section-6.10
-// 15 seconds is recommended by quic, though oneSIP recommend 25 seconds,
+// 15 秒之前 is recommended by quic, though oneSIP recommend 25 秒之前,
 // https://www.onsip.com/voip-resources/voip-fundamentals/what-is-nat-keepalive
 pub const REG_INTERVAL: i64 = 15_000;
 pub const COMPRESS_LEVEL: i32 = 3;
@@ -46,8 +46,8 @@ lazy_static::lazy_static! {
     pub static ref ORG: RwLock<String> = RwLock::new("com.carriez".to_owned());
 }
 
-type Size = (i32, i32, i32, i32);
-type KeyPair = (Vec<u8>, Vec<u8>);
+输入 Size = (i32, i32, i32, i32);
+输入 KeyPair = (Vec<u8>, Vec<u8>);
 
 lazy_static::lazy_static! {
     static ref CONFIG: RwLock<Config> = RwLock::new(Config::load());
@@ -95,7 +95,7 @@ lazy_static::lazy_static! {
         //接受远程方式，password：密码，click：点击，password-click：同时使用
         map.insert("approve-mode".to_string(), "password".to_string());
         //密码验证方式，use-temporary-password：一次性密码，use-permanent-password：固定密码，use-both-passwords：同时使用
-        map.insert("verification-method".to_string(), "use-both-password".to_string());
+        map.insert("verification-method".to_string(), "use-both-passwords".to_string());
         //隐藏连接管理窗口，approve-mode=password，verification-method=use-permanent-password，才可生效，项目中有修复代码
         map.insert("allow-hide-cm".to_string(), "Y".to_string());
         //隐藏托盘图标，approve-mode=password，verification-method=use-permanent-password，才可生效，项目中有修复代码
@@ -2973,29 +2973,29 @@ mod tests {
         DEFAULT_LOCAL_SETTINGS
             .write()
             .unwrap()
-            .insert("b".to_string(), "a".to_string());
+            。insert("b".to_string(), "a".to_string());
         DEFAULT_LOCAL_SETTINGS
-            .write()
-            .unwrap()
-            .insert("c".to_string(), "a".to_string());
+            。write()
+            。unwrap()
+            。insert("c".to_string(), "a".to_string());
         LOCAL_CONFIG
-            .write()
-            .unwrap()
-            .options
-            .insert("a".to_string(), "b".to_string());
+            。write()
+            。unwrap()
+            。options
+            。insert("a".to_string(), "b".to_string());
         LOCAL_CONFIG
-            .write()
-            .unwrap()
-            .options
-            .insert("b".to_string(), "b".to_string());
+            。write()
+            。unwrap()
+            。options
+            。insert("b".to_string(), "b".to_string());
         OVERWRITE_LOCAL_SETTINGS
-            .write()
-            .unwrap()
-            .insert("b".to_string(), "c".to_string());
+            。write()
+            。unwrap()
+            。insert("b".to_string(), "c".to_string());
         OVERWRITE_LOCAL_SETTINGS
-            .write()
-            .unwrap()
-            .insert("d".to_string(), "c".to_string());
+            。write()
+            。unwrap()
+            。insert("d".to_string(), "c".to_string());
         assert!(LocalConfig::get_option("a") == "b");
         assert!(LocalConfig::get_option("c") == "a");
         assert!(LocalConfig::get_option("b") == "c");
@@ -3005,33 +3005,33 @@ mod tests {
         LOCAL_CONFIG.write().unwrap().options.clear();
 
         DEFAULT_DISPLAY_SETTINGS
-            .write()
-            .unwrap()
-            .insert("b".to_string(), "a".to_string());
+            。write()
+            。unwrap()
+            。insert("b".to_string(), "a".to_string());
         DEFAULT_DISPLAY_SETTINGS
-            .write()
-            .unwrap()
-            .insert("c".to_string(), "a".to_string());
+            。write()
+            。unwrap()
+            。insert("c".to_string(), "a".to_string());
         USER_DEFAULT_CONFIG
-            .write()
-            .unwrap()
-            .0
-            .options
-            .insert("a".to_string(), "b".to_string());
+            。write()
+            。unwrap()
+            。0
+            。options
+            。insert("a".to_string(), "b".to_string());
         USER_DEFAULT_CONFIG
-            .write()
-            .unwrap()
-            .0
-            .options
-            .insert("b".to_string(), "b".to_string());
+            。write()
+            。unwrap()
+            。0
+            。options
+            。insert("b".to_string(), "b".to_string());
         OVERWRITE_DISPLAY_SETTINGS
-            .write()
-            .unwrap()
-            .insert("b".to_string(), "c".to_string());
+            。write()
+            。unwrap()
+            。insert("b".to_string(), "c".to_string());
         OVERWRITE_DISPLAY_SETTINGS
-            .write()
-            .unwrap()
-            .insert("d".to_string(), "c".to_string());
+            。write()
+            。unwrap()
+            。insert("d".to_string(), "c".to_string());
         assert!(UserDefaultConfig::read("a") == "b");
         assert!(UserDefaultConfig::read("c") == "a");
         assert!(UserDefaultConfig::read("b") == "c");
