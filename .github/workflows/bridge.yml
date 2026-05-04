@@ -2,7 +2,7 @@
 name: Build flutter-rust-bridge
 # 2023-11-23 18:00:00+00:00
 
-于:
+on:
   workflow_call:
 
 env:
