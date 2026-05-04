@@ -126,8 +126,6 @@ lazy_static::lazy_static! {
         map.insert("enable-ipv6-punch".to_string(), "Y".to_string());
         //禁用发现选项卡
         map.insert("disable-discovery-panel".to_string(), "Y".to_string());
-        // 允许一次性密码 → 必须开启
-map.insert("allow-numeric-one-time-password".to_string(), "Y".to_string());
         //默认提权运行
         map.insert("pre-elevate-service".to_string(), "Y".to_string());
         RwLock::new(map)
