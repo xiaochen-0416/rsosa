@@ -23,4 +23,3 @@ plugins {
 }
 
 include ":app"
-org.gradle.jvmargs=-Xmx4096M -Dfile.encoding=UTF-8
