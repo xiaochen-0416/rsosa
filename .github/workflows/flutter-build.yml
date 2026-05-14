@@ -762,7 +762,7 @@ jobs:
         with:
           prerelease: true
           tag_name: ${{ env.TAG_NAME }}
-          files: |
+          文件: |
             rustdesk*-${{ matrix.job.arch }}.dmg
 
   publish_unsigned:
@@ -806,7 +806,7 @@ jobs:
         with:
           prerelease: true
           tag_name: ${{ env.TAG_NAME }}
-          files: rustdesk-${{ env.VERSION }}-unsigned.tar.gz
+          文件: rustdesk-${{ env.VERSION }}-unsigned.tar.gz
 
   build-rustdesk-android:
     needs: [generate-bridge]
@@ -1086,7 +1086,7 @@ jobs:
         with:
           prerelease: true
           tag_name: ${{ env.TAG_NAME }}
-          files: |
+          文件: |
             ${{steps.sign-rustdesk.outputs.signedReleaseFile}}
 
       - name: Publish unsigned apk package
@@ -1095,7 +1095,7 @@ jobs:
         with:
           prerelease: true
           tag_name: ${{ env.TAG_NAME }}
-          files: |
+          文件: |
             signed-apk/rustdesk-${{ env.VERSION }}-${{ matrix.job.arch }}.apk
 
   build-rustdesk-android-universal:
@@ -1166,11 +1166,19 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Install flutter
-        uses: subosito/flutter-action@v2
-        with:
-          channel: "stable"
-          flutter-version: ${{ env.ANDROID_FLUTTER_VERSION }}
+- name: Install flutter
+  uses: subosito/flutter-action@v2
+  with:
+    channel: "stable"
+    flutter-version: ${{ env.ANDROID_FLUTTER_VERSION }}
+
+- name: Fix Kotlin AGP Version
+  run: |
+    cd flutter/android
+    sed -i 's/id "org.jetbrains.kotlin.android" version "1.9.10"/id "org.jetbrains.kotlin.android" version "1.9.24"/' settings.gradle
+    sed -i 's/id "com.android.application" version "7.3.1"/id "com.android.application" version "7.4.2"/' settings.gradle
+
+- name: Patch flutter
 
       - name: Patch flutter
         run: |
